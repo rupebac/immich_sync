@@ -12,7 +12,6 @@ LOCK_FILE="$SCRIPT_DIR/${USERNAME}.lock"
 # Function to clean up and exit
 cleanup_exit() {
     echo "Exiting..."
-    ./immich_upload_refresh.sh
     rm -f "$LOCK_FILE"
     exit 1
 }
