@@ -15,11 +15,13 @@ VIDEO_EXTS="avi 3gp mp4 mov mkv wmv flv mpg mpeg rm swf vob divx m4v"
 USER=$1
 DIR=$2
 
-SCRIPT_DIR=$(dirname "$(realpath "$0")")
+#SCRIPT_DIR=$(dirname "$(realpath "$0")")
 
-LOCK_FILE="$SCRIPT_DIR/${USER}.lock"
+SCRIPT_DIR=$(dirname "$0")
+cd $(dirname "$0")
+SCRIPT_DIR=$(pwd)
 
-echo "LockFile $LOCK_FILE"
+LOCK_FILE="$SCRIPT_DIR/${USER}_iteration.lock"
 
 # Function to clean up and exit
 cleanup_exit() {
@@ -58,7 +60,7 @@ find "$DIR" -type f -print0 | while IFS= read -r -d '' FILE; do
     echo "==> $FILE"
 
     # Execute external program
-    sudo -u "$USER" immich upload "$FILE"
+    sudo -u ${USER} immich upload "${FILE}"
 
     CMD_STATUS=$?
 
