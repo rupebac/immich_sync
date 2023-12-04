@@ -29,9 +29,9 @@ fi
 touch "$LOCK_FILE"
 
 
-./immich_upload_refresh.sh > ./logs/${USER}/refresh.log
+./immich_upload_refresh.sh > ./logs/${USER}/refresh.log 2> ./logs/${USER}/refresh_errors.log
 ./immich_iteration.sh ${USER} ${UPLOAD_DIR} > ./logs/${USER}/sync.log 2>> ./logs/${USER}/sync_errors.log
-./immich_upload_refresh.sh >> ./logs/${USER}/refresh.log
+./immich_upload_refresh.sh >> ./logs/${USER}/refresh.log 2>> ./logs/${USER}/refresh_errors.log
 cat ./logs/${USER}/sync.log
 cat ./logs/${USER}/sync_errors.log
 
